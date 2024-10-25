@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Iks.WebApi.Dominio.DTOs\Iks.WebApi.Dominio.DTOs.csproj" />
+  </ItemGroup>
+
 </Project>

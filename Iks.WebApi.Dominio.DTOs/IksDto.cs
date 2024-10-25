@@ -1,6 +1,6 @@
 ﻿namespace Iks.WebApi.Dominio.DTOs
 {
-    public class Iks
+    public class IksDto
     {
         public long IdCliente { get; set; }
         public string? CodigoDeLlave { get; set; }
