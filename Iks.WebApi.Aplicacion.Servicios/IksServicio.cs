@@ -57,21 +57,46 @@ namespace Iks.WebApi.Aplicacion.Servicios
             catch(Exception ex) 
             {
                 response.IsSuccess = false;
-                response.Message = $"Ocurrió un error: { ex }";
+                response.Message = $"Ocurrió un error: { ex.Message }";
             }
             
             return response;    
 
         }
 
-        public Task<Response<int>> Contar()
+        public async Task<Response<bool>> Eliminar(long id)
         {
-            throw new NotImplementedException();
-        }
+            var response = new Response<bool>();
 
-        public Task<Response<bool>> Eliminar(long id)
-        {
-            throw new NotImplementedException();
+            if (id == 0)
+            {
+                response.IsSuccess = false;
+                response.Message = "Debe proporcionar el id del iks a eliminar.";
+                return response;
+            }
+
+
+            try
+            {
+                var iks = await _iksRepositorio.Eliminar(id);
+
+                if (iks)
+                {
+                    response.IsSuccess = true;
+                    response.Message = "Elimiacion exitosa!!";
+                }
+                else
+                {
+                    response.IsSuccess = false;
+                    response.Message = "Hubo error al eliminar el registro";
+                }
+            }
+            catch(Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = $"Ocurrió un error: {ex.Message}";
+            }
+            return response;
         }
 
         public async Task<Response<bool>> Guardar(IksDto modelo)
@@ -164,14 +189,68 @@ namespace Iks.WebApi.Aplicacion.Servicios
             return response;
         }
 
-        public Task<Response<IEnumerable<IksDto>>> ObtenerTodo()
+        public async Task<Response<IEnumerable<IksDto>>> ObtenerTodo()
         {
-            throw new NotImplementedException();
+            var response = new Response<IEnumerable<IksDto>>();
+
+            try
+            {
+                var iks = await _iksRepositorio.ObtenerTodo();
+
+                if (iks is { })
+                {
+                    response.Data = iks;
+                    response.IsSuccess = true;
+                    response.Message = "Consulta exitosa!!";
+                }
+                else
+                {
+                    response.IsSuccess = false;
+                    response.Message = "Hubo error al obtener los registros";
+                }
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = $"Ocurrió un error: {ex.Message}";
+            }
+
+            return response;
         }
 
-        public Task<Response<IEnumerable<IksDto>>> ObtenerTodoConPaginacion(int numeroPagina, int tamañoPagina)
+        public async Task<ResponsePagination<IEnumerable<IksDto>>> ObtenerTodoConPaginacion(int numeroPagina, int tamañoPagina)
         {
-            throw new NotImplementedException();
-        }
+            var response = new ResponsePagination<IEnumerable<IksDto>>();
+
+            try
+            {
+                var contador = await _iksRepositorio.Contar();
+                var iks = await _iksRepositorio.ObtenerTodoConPaginacion(numeroPagina, tamañoPagina);
+              //  response.Data = _mapper.Map<IEnumerable<IksDto>>(iks);
+
+                if (iks != null)
+                {
+                    response.NumeroDePagina = numeroPagina;
+                    response.TotalPaginas = (int)Math.Ceiling(contador / (double)tamañoPagina);
+                    response.CantidadTotal = contador;
+                    response.IsSuccess = true;
+                    response.Message = "Consulta paginada exitosa!!!";
+
+                }
+                else
+                {
+                    response.IsSuccess = false;
+                    response.Message = "Hubo error al consultar los registros";
+
+                }
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = $"Ocurrió un error: {ex.Message}";
+            }
+
+            return response;
+        } 
     }
 }

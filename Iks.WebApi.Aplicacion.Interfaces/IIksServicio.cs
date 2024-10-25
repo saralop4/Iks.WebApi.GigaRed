@@ -10,8 +10,8 @@ public interface IIksServicio
     Task<Response<bool>> Guardar(IksDto modelo);
     Task<Response<bool>> Actualizar(long id, IksDto modelo);
     Task<Response<bool>> Eliminar(long id);
-    Task<Response<IEnumerable<IksDto>>> ObtenerTodoConPaginacion(int numeroPagina, int tamañoPagina);
-    Task<Response<int>> Contar();
+    Task<ResponsePagination<IEnumerable<IksDto>>> ObtenerTodoConPaginacion(int numeroPagina, int tamañoPagina);
+
 
 
 
