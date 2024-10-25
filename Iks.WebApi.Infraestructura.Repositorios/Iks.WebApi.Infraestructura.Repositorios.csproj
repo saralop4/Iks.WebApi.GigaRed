@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.35" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Iks.WebApi.Dominio.Interfaces\Iks.WebApi.Dominio.Interfaces.csproj" />
+    <ProjectReference Include="..\Iks.WebApi.Dominio.Persistencia\Iks.WebApi.Dominio.Persistencia.csproj" />
   </ItemGroup>
 
 </Project>

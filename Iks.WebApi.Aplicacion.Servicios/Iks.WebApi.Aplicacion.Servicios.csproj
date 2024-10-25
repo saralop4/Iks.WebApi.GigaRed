@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Iks.WebApi.Aplicacion.Interfaces\Iks.WebApi.Aplicacion.Interfaces.csproj" />
+    <ProjectReference Include="..\Iks.WebApi.Aplicacion.Validadores\Iks.WebApi.Aplicacion.Validadores.csproj" />
+    <ProjectReference Include="..\Iks.WebApi.Dominio.DTOs\Iks.WebApi.Dominio.DTOs.csproj" />
+    <ProjectReference Include="..\Iks.WebApi.Dominio.Interfaces\Iks.WebApi.Dominio.Interfaces.csproj" />
+    <ProjectReference Include="..\Iks.WebApi.Transversal.Interfaces\Iks.WebApi.Transversal.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>
