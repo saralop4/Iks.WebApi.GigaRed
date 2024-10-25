@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Iks.WebApi.Dominio.DTOs\Iks.WebApi.Dominio.DTOs.csproj" />
+    <ProjectReference Include="..\Iks.WebApi.Transversal.Modelos\Iks.WebApi.Transversal.Modelos.csproj" />
+  </ItemGroup>
+
 </Project>
