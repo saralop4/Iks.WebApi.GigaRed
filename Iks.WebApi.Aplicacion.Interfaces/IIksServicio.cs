@@ -5,7 +5,7 @@ namespace Iks.WebApi.Aplicacion.Interfaces;
 
 public interface IIksServicio
 {
-    Task<Response<IksDto>> Obtener(long id);
+    Task<Response<IksDto>> ObtenerPorId(long id);
     Task<Response<IEnumerable<IksDto>>> ObtenerTodo();
     Task<Response<bool>> Guardar(IksDto modelo);
     Task<Response<bool>> Actualizar(long id, IksDto modelo);
