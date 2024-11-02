@@ -1,9 +1,12 @@
-﻿using Iks.WebApi.Aplicacion.Interfaces;
+﻿using AutoMapper;
+using Iks.WebApi.Aplicacion.Interfaces;
 using Iks.WebApi.Aplicacion.Validadores;
 using Iks.WebApi.Dominio.DTOs;
 using Iks.WebApi.Dominio.Interfaces;
+using Iks.WebApi.Dominio.Persistencia.Modelos;
 using Iks.WebApi.Transversal.Interfaces;
 using Iks.WebApi.Transversal.Modelos;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Iks.WebApi.Aplicacion.Servicios;
 
@@ -11,12 +14,14 @@ public class IksServicio : IIksServicio
 {
     private readonly IIksRepositorio _iksRepositorio;
     private readonly IksDtoValidador _iksDtoValidador;
+    private readonly IMapper _mapper; 
     private readonly IAppLogger<IksServicio> _logger;
 
-    public IksServicio(IIksRepositorio iksRepositorio, IksDtoValidador iksDtoValidador, IAppLogger<IksServicio> logger)
+    public IksServicio(IMapper mapper,IIksRepositorio iksRepositorio, IksDtoValidador iksDtoValidador, IAppLogger<IksServicio> logger)
     {
         _iksDtoValidador = iksDtoValidador;
         _iksRepositorio = iksRepositorio;
+        _mapper = mapper;
         _logger = logger;
     }
 
@@ -51,7 +56,7 @@ public class IksServicio : IIksServicio
         }
         try
         {
-            var iksExitente = Obtener(id);
+            var iksExitente = ObtenerPorId(id);
 
             if (iksExitente is null)
             {
@@ -62,11 +67,14 @@ public class IksServicio : IIksServicio
 
             }
 
-            var iks = await _iksRepositorio.Actualizar(modelo);
+            modelo.FechaDeActualizado = DateTime.Now;
+            modelo.HoraDeActualizado = DateTime.Now.TimeOfDay;
+            var iks = _mapper.Map<Ik>(modelo);
 
-            if (iks is { }) // no es nulo
+            response.Data = await _iksRepositorio.Actualizar(iks);
+
+            if (response.Data)
             {
-                response.Data = iks;
                 response.IsSuccess = true;
                 response.Message = "Actualizacion exitosa!!";
                 _logger.LogInformation("Consulta exitosa!!");
@@ -105,9 +113,9 @@ public class IksServicio : IIksServicio
 
         try
         {
-            var iks = await _iksRepositorio.Eliminar(id);
+            response.Data = await _iksRepositorio.Eliminar(id);
 
-            if (iks)
+            if (response.Data)
             {
                 response.IsSuccess = true;
                 response.Message = "Elimiacion exitosa!!";
@@ -155,11 +163,12 @@ public class IksServicio : IIksServicio
             }
 
 
-            var iks = await _iksRepositorio.Guardar(modelo);
+            var iks = _mapper.Map<Ik>(modelo);
 
-            if (iks is { })
+            response.Data = await _iksRepositorio.Guardar(iks);
+
+            if (response.Data)
             {
-                response.Data = iks;
                 response.IsSuccess = true;
                 response.Message = "Registro exitoso!!"; 
              _logger.LogInformation("Registro exitoso!!");
@@ -197,10 +206,9 @@ public class IksServicio : IIksServicio
         try
         {
             var iks = await _iksRepositorio.ObtenerPorId(id);
-
-            if (iks is { })
+            response.Data = _mapper.Map<IksDto>(iks);
+            if (response.Data != null)
             {
-                response.Data = iks;
                 response.IsSuccess = true;
                 response.Message = "Consulta exitosa!!";
                 _logger.LogInformation("Consulta exitosa!!");
@@ -228,10 +236,10 @@ public class IksServicio : IIksServicio
         try
         {
             var iks = await _iksRepositorio.ObtenerTodo();
+            response.Data = _mapper.Map<IEnumerable<IksDto>>(iks);
 
-            if (iks is { })
+            if (response.Data != null)
             {
-                response.Data = iks;
                 response.IsSuccess = true;
                 response.Message = "Consulta exitosa!!";
                 _logger.LogInformation("Consulta exitosa!!");
@@ -262,9 +270,9 @@ public class IksServicio : IIksServicio
             var contador = await _iksRepositorio.Contar();
 
             var iks = await _iksRepositorio.ObtenerTodoConPaginacion(numeroPagina, tamañoPagina);
-          //  response.Data = _mapper.Map<IEnumerable<IksDto>>(iks);
+            response.Data = _mapper.Map<IEnumerable<IksDto>>(iks);
 
-            if (iks != null)
+            if (response.Data != null)
             {
                 response.NumeroDePagina = numeroPagina;
                 response.TotalPaginas = (int)Math.Ceiling(contador / (double)tamañoPagina);

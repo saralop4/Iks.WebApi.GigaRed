@@ -1,7 +1,7 @@
 ﻿using Dapper;
-using Iks.WebApi.Dominio.DTOs;
 using Iks.WebApi.Dominio.Interfaces;
 using Iks.WebApi.Dominio.Persistencia;
+using Iks.WebApi.Dominio.Persistencia.Modelos;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 
@@ -15,7 +15,7 @@ public class IksRepositorio : IIksRepositorio
     {
         _dapperContext = new DapperContext(configuration);  
     }
-    public async Task<bool> Actualizar(IksDto modelo)
+    public async Task<bool> Actualizar(Ik modelo)
     {
         using (var conexion = _dapperContext.CreateConnection())
         {
@@ -46,7 +46,7 @@ public class IksRepositorio : IIksRepositorio
         }
     }
 
-    public async Task<bool> Guardar(IksDto modelo)
+    public async Task<bool> Guardar(Ik modelo)
     {
         using(var conexion = _dapperContext.CreateConnection())
         {
@@ -63,7 +63,7 @@ public class IksRepositorio : IIksRepositorio
           
     }
 
-    public async Task<IEnumerable<IksDto>> ObtenerTodoConPaginacion(int numeroPagina, int tamañoPagina)
+    public async Task<IEnumerable<Ik>> ObtenerTodoConPaginacion(int numeroPagina, int tamañoPagina)
     {
         using (var connection = _dapperContext.CreateConnection()) 
         {
@@ -73,13 +73,13 @@ public class IksRepositorio : IIksRepositorio
             parameters.Add("NumeroPagina", numeroPagina);
             parameters.Add("TamañoPagina", tamañoPagina);
 
-            var result = await connection.QueryAsync<IksDto>(query, param: parameters, commandType: CommandType.StoredProcedure);
+            var result = await connection.QueryAsync<Ik>(query, param: parameters, commandType: CommandType.StoredProcedure);
 
             return result;
         }
     }
 
-    public async Task<IksDto> ObtenerPorId(long id)
+    public async Task<Ik> ObtenerPorId(long id)
     {
         using (var conexion = _dapperContext.CreateConnection())
         {
@@ -87,18 +87,19 @@ public class IksRepositorio : IIksRepositorio
             var parameters = new DynamicParameters();
             parameters.Add("IdIks", id);
 
-            var result = await conexion.QuerySingleAsync<IksDto>(query, parameters, commandType: CommandType.StoredProcedure);
+            var result = await conexion.QuerySingleOrDefaultAsync<Ik>(query, param: parameters, commandType: CommandType.StoredProcedure);
+
             return result;
         }
     }
 
-    public async Task<IEnumerable<IksDto>> ObtenerTodo()
+    public async Task<IEnumerable<Ik>> ObtenerTodo()
     {
         using (var connection = _dapperContext.CreateConnection())
         {
             var query = "ObtenerIks";
 
-            var result = await connection.QueryAsync<IksDto>(query, param: null, commandType: CommandType.StoredProcedure);
+            var result = await connection.QueryAsync<Ik>(query, param: null, commandType: CommandType.StoredProcedure);
             return result;
         };
     }

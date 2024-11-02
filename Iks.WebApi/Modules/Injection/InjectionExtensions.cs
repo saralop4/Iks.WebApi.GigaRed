@@ -4,7 +4,7 @@ using Iks.WebApi.Dominio.Interfaces;
 using Iks.WebApi.Dominio.Persistencia;
 using Iks.WebApi.Infraestructura.Repositorios;
 using Iks.WebApi.Transversal.Interfaces;
-using Iks.WebApi.Transversal.Modelos;
+using Iks.WebApi.Transversal.Logging;
 
 namespace Iks.WebApi.Modules.Injection;
 

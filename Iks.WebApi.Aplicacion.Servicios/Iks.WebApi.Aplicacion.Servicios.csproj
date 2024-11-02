@@ -7,10 +7,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Iks.WebApi.Aplicacion.Interfaces\Iks.WebApi.Aplicacion.Interfaces.csproj" />
     <ProjectReference Include="..\Iks.WebApi.Aplicacion.Validadores\Iks.WebApi.Aplicacion.Validadores.csproj" />
     <ProjectReference Include="..\Iks.WebApi.Dominio.DTOs\Iks.WebApi.Dominio.DTOs.csproj" />
     <ProjectReference Include="..\Iks.WebApi.Dominio.Interfaces\Iks.WebApi.Dominio.Interfaces.csproj" />
+    <ProjectReference Include="..\Iks.WebApi.Dominio.Persistencia\Iks.WebApi.Dominio.Persistencia.csproj" />
     <ProjectReference Include="..\Iks.WebApi.Transversal.Interfaces\Iks.WebApi.Transversal.Interfaces.csproj" />
   </ItemGroup>
 
