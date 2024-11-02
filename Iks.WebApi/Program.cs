@@ -5,9 +5,11 @@ using Iks.WebApi.Modules.Mapper;
 using Iks.WebApi.Modules.Swagger;
 using Iks.WebApi.Modules.Validator;
 using Iks.WebApi.Modules.Versioning;
+using Iks.WebApi.Modules.WatchDog;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
+using WatchDog;
 
 namespace Iks.WebApi;
 
@@ -44,6 +46,7 @@ public class Program
         builder.Services.AddValidator();
         builder.Services.AddInjection(builder.Configuration);
         builder.Services.AddSwaggerDocumentation();
+        builder.Services.AddWatchDog(builder.Configuration);
 
         var app = builder.Build();
 
@@ -114,6 +117,13 @@ public class Program
         app.UseAuthentication();
         app.UseAuthorization();
         app.MapControllers();
+        app.UseWatchDog(opt =>
+        {
+            opt.WatchPageUsername = builder.Configuration["WatchDog:WatchPageUsername"];
+            opt.WatchPagePassword = builder.Configuration["WatchDog:WatchPagePassword"];
+            //opt.WatchPageUsername = "admin";
+            //opt.WatchPagePassword = "admin@123";
+        });
 
 
         app.Run();
