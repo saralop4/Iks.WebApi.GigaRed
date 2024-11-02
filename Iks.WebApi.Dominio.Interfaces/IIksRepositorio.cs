@@ -1,8 +1,8 @@
-﻿using Iks.WebApi.Dominio.DTOs;
+﻿using Iks.WebApi.Dominio.Persistencia.Modelos;
 
 namespace Iks.WebApi.Dominio.Interfaces;
 
-public interface IIksRepositorio : IGenericRepository<IksDto>
+public interface IIksRepositorio : IGenericRepository<Ik>
 {
 
 }

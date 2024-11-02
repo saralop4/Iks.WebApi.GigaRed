@@ -15,11 +15,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Iks.WebApi.Dominio.DTOs\Iks.WebApi.Dominio.DTOs.csproj" />
-    <ProjectReference Include="..\Iks.WebApi.Dominio.Persistencia\Iks.WebApi.Dominio.Persistencia.csproj" />
+    <ProjectReference Include="..\Iks.WebApi.Transversal.Interfaces\Iks.WebApi.Transversal.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

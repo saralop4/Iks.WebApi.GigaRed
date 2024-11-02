@@ -33,6 +33,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iks.WebApi.Transversal.Mode
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iks.WebApi.Transversal.Interfaces", "Iks.WebApi.Transversal.Interfaces\Iks.WebApi.Transversal.Interfaces.csproj", "{513C5B2D-D720-4D11-9C96-1E7BA6E6F0E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iks.WebApi.Transversal.Mapper", "Iks.WebApi.Transversal.Mapper\Iks.WebApi.Transversal.Mapper.csproj", "{660495EC-53B0-4044-BA43-FEF549AB1159}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iks.WebApi.Transversal.Logging", "Iks.WebApi.Transversal.Logging\Iks.WebApi.Transversal.Logging.csproj", "{E7EBC3EC-FBE6-4B4C-BFEE-4A1BF27F5708}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +83,14 @@ Global
 		{513C5B2D-D720-4D11-9C96-1E7BA6E6F0E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{513C5B2D-D720-4D11-9C96-1E7BA6E6F0E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{513C5B2D-D720-4D11-9C96-1E7BA6E6F0E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{660495EC-53B0-4044-BA43-FEF549AB1159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{660495EC-53B0-4044-BA43-FEF549AB1159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{660495EC-53B0-4044-BA43-FEF549AB1159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{660495EC-53B0-4044-BA43-FEF549AB1159}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7EBC3EC-FBE6-4B4C-BFEE-4A1BF27F5708}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7EBC3EC-FBE6-4B4C-BFEE-4A1BF27F5708}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7EBC3EC-FBE6-4B4C-BFEE-4A1BF27F5708}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7EBC3EC-FBE6-4B4C-BFEE-4A1BF27F5708}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +106,8 @@ Global
 		{676B24A7-04FA-47BE-AFDE-8D2E1173014B} = {9C5BCB09-C567-4B99-BDCA-69F6D85D045D}
 		{ED427535-B30F-41B1-A298-20B26576171F} = {AB7B3516-B59B-4015-9DA0-78C43E03E09E}
 		{513C5B2D-D720-4D11-9C96-1E7BA6E6F0E3} = {AB7B3516-B59B-4015-9DA0-78C43E03E09E}
+		{660495EC-53B0-4044-BA43-FEF549AB1159} = {AB7B3516-B59B-4015-9DA0-78C43E03E09E}
+		{E7EBC3EC-FBE6-4B4C-BFEE-4A1BF27F5708} = {AB7B3516-B59B-4015-9DA0-78C43E03E09E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1F523C90-D944-41EC-A865-E48EA5CE2408}

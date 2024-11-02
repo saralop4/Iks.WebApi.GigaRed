@@ -1,7 +1,7 @@
 ﻿using Iks.WebApi.Transversal.Interfaces;
-using Microsoft.Extensions.Logging; 
+using Microsoft.Extensions.Logging;
 
-namespace Iks.WebApi.Transversal.Modelos;
+namespace Iks.WebApi.Transversal.Logging;
 
 public class LoggerAdapter<T> : IAppLogger<T>
 {

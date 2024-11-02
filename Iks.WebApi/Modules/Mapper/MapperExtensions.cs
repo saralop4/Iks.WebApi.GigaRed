@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Iks.WebApi.Transversal.Modelos;
+using Iks.WebApi.Transversal.Mapper;
 
 namespace Iks.WebApi.Modules.Mapper;
 
