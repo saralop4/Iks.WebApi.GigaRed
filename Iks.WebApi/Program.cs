@@ -31,9 +31,10 @@ public class Program
         }
 
         // Add services to the container.
-
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
+
+        //para que este codigo funcione hay que instalar Microsoft.AspNetCore.Mvc.NewtonsoftJson
+
         builder.Services.AddControllers().AddNewtonsoftJson(options =>
         {
             options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver(); 
@@ -112,6 +113,7 @@ public class Program
             }
         });
 
+        app.UseWatchDogExceptionLogger();
         app.UseHttpsRedirection();
         app.UseCors("policyApi");
         app.UseAuthentication();
