@@ -6,7 +6,6 @@ using Iks.WebApi.Dominio.Interfaces;
 using Iks.WebApi.Dominio.Persistencia.Modelos;
 using Iks.WebApi.Transversal.Interfaces;
 using Iks.WebApi.Transversal.Modelos;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Iks.WebApi.Aplicacion.Servicios;
 
